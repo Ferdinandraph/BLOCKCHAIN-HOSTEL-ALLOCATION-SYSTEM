@@ -13,7 +13,12 @@ const cors = require('cors');
 const apiRoutes = require('./routes/api');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // Temporary wildcard
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
